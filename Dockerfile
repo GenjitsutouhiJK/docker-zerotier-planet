@@ -24,7 +24,7 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.tuna.tsinghua.edu.cn/g' /etc/apk/re
     && echo "${ZT_PORT}" >/app/zerotier-one.port \
     && cp -v etc/default.passwd etc/passwd
 
-RUN cd /app && git clone --progress https://ghself.markxu.online/https://github.com/zerotier/ZeroTierOne.git --depth 1\
+RUN cd /app && git clone --progress https://github.com/zerotier/ZeroTierOne.git --depth 1\
     && zerotier-one -d && sleep 5s && ps -ef |grep zerotier-one |grep -v grep |awk '{print $1}' |xargs kill -9 \
     && cd /var/lib/zerotier-one && zerotier-idtool initmoon identity.public >moon.json\
     && cd /app/patch && python3 patch.py \
